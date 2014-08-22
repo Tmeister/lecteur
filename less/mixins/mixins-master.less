@@ -1,7 +1,9 @@
 // Rem output with px fallback
-.font-size(@sizeValue: 1.6) {
-  	font-size: (@sizeValue * 10) + px;
-  	font-size: @sizeValue + rem;
+.font-size(@sizeValue) {
+  @remValue: @sizeValue;
+  @pxValue: (@sizeValue * 10);
+  font-size: ~"@{pxValue}px";
+  font-size: ~"@{remValue}rem";
 }
 
 // Box model
