@@ -10,7 +10,6 @@ gulp.task('less', function() {
   	.pipe(plugins.less())
 	.pipe(plugins.livereload(server))
 	.pipe(gulp.dest('./'))
-	.pipe(plugins.notify({ message: 'Less task complete' }));
 });
 
 // Watch
@@ -22,8 +21,15 @@ gulp.task('watch', function() {
 	  return console.log(err)
 	};
 
-	// Watch .scss files
+	// Watch .less files
 	gulp.watch('less/**/*.less', ['less']);
+
+	// Watch .php files
+	plugins.watch({glob: '*.php'}, function(files){
+		files
+		.pipe(plugins.livereload(server))
+	});
+
 
   });
 

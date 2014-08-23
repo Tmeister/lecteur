@@ -124,6 +124,24 @@ function lecteur_categorized_blog() {
 	}
 }
 
+
+if (! function_exists('lecteur_get_featured_image')):
+
+/**
+ * Helper function to get the featured image
+ */
+
+function lecteur_get_featured_image($postid = false, $size = 'full'){
+	if( ! $postid ){
+		return false;
+	}
+	$src = wp_get_attachment_image_src( get_post_thumbnail_id($postid), $size, false);
+	return ($src) ? $src[0] : false;
+}
+
+
+endif;
+
 /**
  * Flush out the transients used in lecteur_categorized_blog.
  */
