@@ -5,12 +5,15 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
-		<div class="entry-meta">
-			<?php lecteur_posted_on(); ?>
-		</div><!-- .entry-meta -->
+	<header class="entry-header" <?php echo lecteur_get_featured_image_style(get_the_ID()) ?>>
+		<div class="holder">
+			<div class="content right-bottom">
+				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				<div class="entry-meta">
+					<?php lecteur_posted_on(); ?>
+				</div><!-- .entry-meta -->
+			</div>
+		</div>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">

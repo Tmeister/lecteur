@@ -24,16 +24,26 @@ gulp.task('watch', function() {
 	// Watch .less files
 	gulp.watch('less/**/*.less', ['less']);
 
+	// Watch .js files
+	gulp.watch('js/src/*.js', ['scripts']);
+
 	// Watch .php files
 	plugins.watch({glob: '*.php'}, function(files){
 		files
 		.pipe(plugins.livereload(server))
 	});
-
-
   });
+});
 
+gulp.task('scripts', function(){
+	gulp.src([
+		'js/src/imagesloaded.js',
+		'js/src/isotope.pkgd.min.js',
+		'js/src/lecteur.js'
+	])
+	.pipe(plugins.concat('lecteur.min.js'))
+	.pipe(gulp.dest('js/'))
 });
 
 // Default task
-gulp.task('default', ['less', 'watch']);
+gulp.task('default', ['less', 'scripts', 'watch']);

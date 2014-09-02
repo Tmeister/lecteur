@@ -79,7 +79,7 @@ function lecteur_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'lecteur' ),
+		_x( '%s', 'post date', 'lecteur' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
@@ -128,7 +128,7 @@ function lecteur_categorized_blog() {
 if (! function_exists('lecteur_get_featured_image')):
 
 /**
- * Helper function to get the featured image
+ * Helper function to get the featured image source
  */
 
 function lecteur_get_featured_image($postid = false, $size = 'full'){
@@ -139,6 +139,18 @@ function lecteur_get_featured_image($postid = false, $size = 'full'){
 	return ($src) ? $src[0] : false;
 }
 
+endif;
+
+
+if (! function_exists('lecteur_get_featured_image_style')):
+/**
+ * Helper function to get the featured image style
+ */
+
+function lecteur_get_featured_image_style($id, $size = 'full'){
+	$bg = lecteur_get_featured_image($id, $size);
+	return ($bg) ? sprintf('style="background-image: url(%s)"', $bg) : '';
+}
 
 endif;
 
