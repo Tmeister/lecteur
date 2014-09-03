@@ -87,3 +87,31 @@ function lecteur_setup_author() {
 	}
 }
 add_action( 'wp', 'lecteur_setup_author' );
+
+
+function lecteur_add_headline_profile( $user ){
+	$headline = get_user_meta( $user->ID,  'lecteur_author_headline', true);
+	?>
+		<h3><?php IS_PROFILE_PAGE ? _e('Your headline') : _e('User headline'); ?></h3>
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="headline"><?php _e('Headline', 'lecteur') ?></label>
+				</th>
+				<td>
+					<input type="text" name="lecteur_author_headline" id="lecteur-author-headline" value="<?php echo esc_attr($headline) ?>" class="regular-text" /><br/>
+					<span class="description"><?php _e('This headline will be show below your name in the author box bio. ex. Storyteller') ?></span>
+				</td>
+			</tr>
+		</table>
+	<?php
+}
+
+add_action('show_user_profile', 'lecteur_add_headline_profile');
+
+function lecteur_update_headline_profile(){
+	global $user_ID;
+	update_user_meta( $user_ID, 'lecteur_author_headline', sanitize_text_field( $_POST['lecteur_author_headline']));
+}
+
+add_action('personal_options_update', 'lecteur_update_headline_profile');

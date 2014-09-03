@@ -1,28 +1,42 @@
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
-	line-height: 1;
+	font-family: @font__header;
+	font-weight: 300;
+	line-height: 1.4em;
 }
 
-h1{
-	.font-size(6.000);
-}
+h1{.font-size(4.2);}
+h2{.font-size(2.9);}
+h3{.font-size(2.3);}
+h4{.font-size(2.750);}
+h5{.font-size(2.265);}
+h6{.font-size(1.7);}
 
-h2{
-	.font-size(4.930);
-}
-
-h3{
-	.font-size(3.450);
-}
-
-h4{
-	.font-size(2.750);
-}
-
-h5{
-	.font-size(2.265);
-}
-
-h6{
-	.font-size(1.7);
+.single-post{
+	.entry-content{
+		h1, h2, h3, h4, h5, h6 {
+			line-height: 1.5;
+		}
+		h1{
+			.font-size(3.8);
+			font-family: @font__main;
+			margin: 100px auto 60px auto !important;
+		}
+		h2{
+			.font-size(2.8);
+			color: @color__text-content-header;
+			font-weight:900;
+			line-height: 1.24em;
+			margin: 40px auto 30px auto !important;
+			text-transform: uppercase;
+		}
+		h3, h4{
+			.font-size(1.8);
+			color: @color__text-content-header;
+			font-weight: 900;
+			line-height: 1;
+			margin: 40px auto 20px auto !important;
+			text-transform: uppercase;
+		}
+	}
 }

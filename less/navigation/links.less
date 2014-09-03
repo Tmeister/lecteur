@@ -1,6 +1,7 @@
 a {
 	color: @color__link;
 	text-decoration: none;
+	.transition(all .25s);
 
 	&:visited {
 		color: @color__link-visited;
@@ -9,5 +10,6 @@ a {
 	&:focus,
 	&:active {
 		color: @color__link-hover;
+		.transition(all .25s);
 	}
 }

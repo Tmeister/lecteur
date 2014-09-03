@@ -9,12 +9,18 @@
 		<div class="holder">
 			<div class="content right-bottom">
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-				<div class="entry-meta">
-					<?php lecteur_posted_on(); ?>
-				</div><!-- .entry-meta -->
 			</div>
 		</div>
 	</header><!-- .entry-header -->
+	<div class="entry-meta">
+	<?php
+		/* translators: used between list items, there is a space after the comma */
+		$category_list = get_the_category_list( __( ', ', 'lecteur' ) );
+	?>
+		<div class="wrapper date"><i class="fa fa-clock-o"></i> <?php lecteur_posted_on(); ?></div>
+		<div class="wrapper comments"><i class="fa fa-comments-o"></i> <a href="#comments"><?php  comments_number( __('0 Comments', 'lecteur'), __('1 Comment', 'lecteur'), __('% Comments', 'lecteur') ); ?></a></div>
+		<div class="wrapper category"><i class="fa fa-tags"></i> <?php echo $category_list ?></div>
+	</div><!-- .entry-meta -->
 
 	<div class="entry-content">
 		<?php the_content(); ?>
@@ -27,37 +33,23 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php
-			/* translators: used between list items, there is a space after the comma */
-			$category_list = get_the_category_list( __( ', ', 'lecteur' ) );
-
-			/* translators: used between list items, there is a space after the comma */
-			$tag_list = get_the_tag_list( '', __( ', ', 'lecteur' ) );
-
-			if ( ! lecteur_categorized_blog() ) {
-				// This blog only has 1 category so we just need to worry about tags in the meta text
-				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'lecteur' );
-				} else {
-					$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'lecteur' );
-				}
-			} else {
-				// But this blog has loads of categories so we should probably display them here
-				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'lecteur' );
-				} else {
-					$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'lecteur' );
-				}
-			} // end check for categories on this blog
-
-			printf(
-				$meta_text,
-				$category_list,
-				$tag_list,
-				get_permalink()
-			);
-		?>
-
-		<?php edit_post_link( __( 'Edit', 'lecteur' ), '<span class="edit-link">', '</span>' ); ?>
+		<div class="holder">
+			<div class="avatar">
+				<?php echo get_avatar(get_the_author_meta( 'ID' ), '175'); ?>
+			</div>
+			<div class="author-vcard">
+				<div class="author-label">
+					<?php _e('Author', 'lecteur') ?>
+				</div>
+				<div class="author-name">
+					<?php echo lecteur_posted_by(); ?>
+					<span class="headline"><?php echo get_the_author_meta( 'lecteur_author_headline' ) ?></span>
+				</div>
+				<div class="author-bio">
+					<?php echo get_the_author_meta('description') ?>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

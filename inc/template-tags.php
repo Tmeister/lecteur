@@ -83,13 +83,29 @@ function lecteur_posted_on() {
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
-	$byline = sprintf(
+	/*$byline = sprintf(
 		_x( 'by %s', 'post author', 'lecteur' ),
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+	);*/
+
+	//echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+	echo '<span class="posted-on">' . $posted_on . '</span>';
+
+}
+endif;
+
+if ( ! function_exists( 'lecteur_posted_by' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function lecteur_posted_by() {
+
+	$byline = sprintf(
+		_x( '%s', 'post author', 'lecteur' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
-
+	echo '<span class="byline"> ' . $byline . '</span>';
 }
 endif;
 
