@@ -3,15 +3,6 @@
  * Sample implementation of the Custom Header feature
  * http://codex.wordpress.org/Custom_Headers
  *
- * You can add an optional custom header image to header.php like so ...
-
-	<?php if ( get_header_image() ) : ?>
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-		<img src="<?php header_image(); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="">
-	</a>
-	<?php endif; // End header image check. ?>
-
- *
  * @package Lecteur
  */
 
@@ -55,7 +46,7 @@ function lecteur_header_style() {
 	?>
 	<style type="text/css">
 	<?php
-		// Has the text been hidden?
+		/* Has the text been hidden? */
 		if ( 'blank' == $header_text_color ) :
 	?>
 		.site-title,

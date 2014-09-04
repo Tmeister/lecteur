@@ -11,11 +11,12 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<div class="entries three-cols">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<!-- <h1 class="page-title">
 					<?php
 						if ( is_category() ) :
 							single_cat_title();
@@ -67,13 +68,14 @@ get_header(); ?>
 
 						endif;
 					?>
-				</h1>
+				</h1> -->
 				<?php
 					// Show an optional term description.
-					$term_description = term_description();
+					/*$term_description = term_description();
 					if ( ! empty( $term_description ) ) :
 						printf( '<div class="taxonomy-description">%s</div>', $term_description );
 					endif;
+					*/
 				?>
 			</header><!-- .page-header -->
 
@@ -97,7 +99,7 @@ get_header(); ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 
 		<?php endif; ?>
-
+		</div><!-- #entries -->
 		</main><!-- #main -->
 	</section><!-- #primary -->
 

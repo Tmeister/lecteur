@@ -179,3 +179,112 @@ function lecteur_category_transient_flusher() {
 }
 add_action( 'edit_category', 'lecteur_category_transient_flusher' );
 add_action( 'save_post',     'lecteur_category_transient_flusher' );
+
+
+function lecteur_open_comment_form_wrap(){
+?>
+	<div id="lecteur-comments-wrapper">
+<?php
+}
+add_action('comment_form_before', 'lecteur_open_comment_form_wrap' );
+
+function lecteur_close_comment_form_wrap(){
+?>
+	</div> <!-- lecteur-comments-wrapper -->
+<?php
+}
+add_action('comment_form_after', 'lecteur_close_comment_form_wrap' );
+
+/**
+* Custom Walker for Comments
+*/
+
+class Lecteur_Comment_Walker extends Walker_Comment {
+		var $tree_type = 'comment';
+		var $db_fields = array( 'parent' => 'comment_parent', 'id' => 'comment_ID' );
+		var $counter = 1;
+
+		// constructor – wrapper for the comments list
+		function __construct() { ?>
+
+			<section class="comments-list">
+
+		<?php }
+
+		// start_lvl – wrapper for child comments list
+		function start_lvl( &$output, $depth = 0, $args = array() ) {
+			$GLOBALS['comment_depth'] = $depth + 2; ?>
+
+			<section class="child-comments comments-list">
+
+		<?php }
+
+		// end_lvl – closing wrapper for child comments list
+		function end_lvl( &$output, $depth = 0, $args = array() ) {
+			$GLOBALS['comment_depth'] = $depth + 2; ?>
+
+			</section>
+
+		<?php }
+
+		// start_el – HTML for comment template
+		function start_el( &$output, $comment, $depth = 0, $args = array(), $id = 0 ) {
+			$depth++;
+			$GLOBALS['comment_depth'] = $depth;
+			$GLOBALS['comment'] = $comment;
+			$parent_class = ( empty( $args['has_children'] ) ? '' : 'parent' );
+
+			if ( 'article' == $args['style'] ) {
+				$tag = 'article';
+				$add_below = 'comment';
+			} else {
+				$tag = 'article';
+				$add_below = 'comment';
+			}
+
+			$no_url = !$comment->comment_author_url || $comment->comment_author_url == 'http://';
+
+			?>
+
+			<article <?php comment_class(empty( $args['has_children'] ) ? '' :'parent') ?> id="comment-<?php comment_ID() ?>" itemscope itemtype="http://schema.org/Comment">
+				<header>
+					<figure class="gravatar"><?php echo get_avatar( $comment, 80); ?></figure>
+					<div class="comment-meta post-meta" role="complementary">
+						<h3 class="comment-author">
+							<?php if ( get_comment_author_url() ) : ?>
+								<a class="comment-author-link" href="<?php comment_author_url(); ?>" itemprop="author"><?php comment_author(); ?></a>
+							<?php else: ?>
+								<?php comment_author(); ?>
+							<?php endif ?>
+
+						</h3>
+						<time class="comment-meta-item" datetime="<?php comment_date('Y-m-d') ?>T<?php comment_time('H:iP') ?>" itemprop="datePublished"><?php comment_date('F jS, Y') ?><i class="fa fa-dot-circle-o"></i><a href="#comment-<?php comment_ID() ?>" itemprop="url"><?php comment_time() ?></a></time>
+						<?php edit_comment_link('<i class="fa fa-dot-circle-o"></i><span class="comment-meta-item">Edit this comment</span>','',''); ?>
+						<?php if ($comment->comment_approved == '0') : ?>
+						<p class="comment-meta-item"><i class="fa fa-exclamation-triangle"></i> <?php _e('Your comment is awaiting moderation.', 'lecteur'); ?> </p>
+						<?php endif; ?>
+						<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+					</div>
+					<div class="clear"></div>
+				</header>
+				<div class="comment-content post-content" itemprop="text">
+					<?php comment_text() ?>
+				</div>
+
+		<?php }
+
+		// end_el – closing HTML for comment template
+		function end_el(&$output, $comment, $depth = 0, $args = array() ) { ?>
+
+			</article>
+
+		<?php }
+
+		// destructor – closing wrapper for the comments list
+		function __destruct() { ?>
+
+			</section>
+
+		<?php }
+
+	}

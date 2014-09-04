@@ -115,3 +115,37 @@ function lecteur_update_headline_profile(){
 }
 
 add_action('personal_options_update', 'lecteur_update_headline_profile');
+
+function lecteur_excert_length(){
+	return 16;
+}
+
+add_filter('excerpt_length', 'lecteur_excert_length');
+
+function lecteur_excert_more(){
+	return '...';
+}
+
+add_filter('excerpt_more', 'lecteur_excert_more');
+
+function lecteur_post_class($classes){
+	if( ! isset( $GLOBALS['lecteur_counter'] )){
+		$GLOBALS['lecteur_counter'] = 0;
+		$GLOBALS['lecteur_switch'] = false;
+	}
+
+	if( ++ $GLOBALS['lecteur_counter'] == 2 ){
+		$GLOBALS['lecteur_counter'] = 0;
+		$GLOBALS['lecteur_switch'] =  ! $GLOBALS['lecteur_switch'];
+	}
+
+	if( $GLOBALS['lecteur_switch'] ){
+		$classes[] = 'x1';
+	}else{
+		$classes[] = 'x2';
+	}
+
+	return $classes;
+
+}
+add_filter('post_class', 'lecteur_post_class');

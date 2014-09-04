@@ -26,8 +26,16 @@
 	<section id="secondary-content">
 		<div id="masthead" class="site-header" role="banner">
 			<div class="site-branding">
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php if ( get_theme_mod('lecteur_logo') ) : ?>
+					<div class="logo-holder">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+							<img src="<?php echo get_theme_mod('lecteur_logo'); ?>" alt="<?php bloginfo( 'description' ); ?>">
+						</a>
+					</div>
+				<?php else: ?>
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+				<?php endif; // End header image check. ?>
 			</div>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>

@@ -16,20 +16,32 @@
 if ( post_password_required() ) {
 	return;
 }
+
+/**
+* Comments Form Args
+**/
+$args = array(
+  'title_reply'       => __( 'Share your thoughts' ),
+  'title_reply_to'    => __( 'Share your thoughts in %s' ),
+  'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Your thoughts', 'lecteur' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+);
+
+
 ?>
 
 <div id="comments" class="comments-area">
 	<div class="holder">
-		<?php if ( have_comments() ) : ?>
-			<div class="comments-title-holder">
-				<div class="join"><?php _e('Join the conversation', 'lecteur') ?></div>
-				<div class="comments-title">
-					<?php
-						printf( _nx( 'One Comment', '%1$s Comments', get_comments_number(), 'comments title', 'lecteur' ),
-							number_format_i18n( get_comments_number() ));
-					?>
-				</div>
+
+		<div class="comments-title-holder">
+			<div class="join"><?php _e('Join the conversation', 'lecteur') ?></div>
+			<div class="comments-title">
+				<?php
+					printf( _nx( 'One Comment', '%1$s Comments', get_comments_number(), 'comments title', 'lecteur' ),
+						number_format_i18n( get_comments_number() ));
+				?>
 			</div>
+		</div>
+		<?php if ( have_comments() ) : ?>
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 			<nav id="comment-nav-above" class="comment-navigation" role="navigation">
@@ -39,14 +51,15 @@ if ( post_password_required() ) {
 			</nav><!-- #comment-nav-above -->
 			<?php endif; // check for comment navigation ?>
 
-			<ul class="comment-list">
+			<div class="comment-list">
 				<?php
 					wp_list_comments( array(
-						'style'      => 'ul',
+						'style'      => 'div',
 						'short_ping' => true,
+						'walker' => new Lecteur_Comment_Walker()
 					) );
 				?>
-			</ul><!-- .comment-list -->
+			</div><!-- .comment-list -->
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 			<nav id="comment-nav-below" class="comment-navigation" role="navigation">
@@ -66,6 +79,6 @@ if ( post_password_required() ) {
 		<?php endif; ?>
 	</div><!-- holder comments -->
 
-	<?php comment_form(); ?>
+	<?php comment_form($args); ?>
 
 </div><!-- #comments -->

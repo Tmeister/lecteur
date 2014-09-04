@@ -7,8 +7,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header" <?php echo lecteur_get_featured_image_style(get_the_ID()) ?>>
 		<div class="holder">
-			<div class="content right-bottom">
+			<div class="content">
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				<p class="excerpt"><?php echo the_excerpt(); ?></p>
 			</div>
 		</div>
 	</header><!-- .entry-header -->
