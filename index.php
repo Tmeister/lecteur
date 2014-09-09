@@ -14,8 +14,15 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
+
 		<main id="main" class="site-main" role="main">
-			<div class="entries three-cols">
+			<div class="loader">
+				<div class="corner">
+					<div class="loading up"></div>
+					<div class="loading down"></div>
+				</div>
+			</div>
+			<div class="entries three-cols hidden">
 
 				<?php if ( have_posts() ) : ?>
 

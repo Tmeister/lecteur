@@ -13,23 +13,20 @@
 		width: 100%;
 
 		ul {
-			background: rgba(0,0,0,.75);
-			position: absolute;
-			top: 0;
-			left: -999em;
-			z-index: 99999;
-			width: 170px;
+			margin-top: 5px;
 			a{
-				text-align: left;
-				padding: 8px 10px;
+				text-align: rigt;
+				padding: 8px 60px;
 				.font-size(1.3);
 				&:after{
 					top:3px;
+					right:40px;
 				}
 			}
 			ul {
-				left: -999em;
-				top: 0;
+				a{
+					padding: 8px 80px;
+				}
 			}
 
 			li {
@@ -47,7 +44,7 @@
 		}
 
 		li:hover > ul {
-			left: 100%;
+			//left: 100%;
 		}
 	}
 	li {

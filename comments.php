@@ -21,12 +21,10 @@ if ( post_password_required() ) {
 * Comments Form Args
 **/
 $args = array(
-  'title_reply'       => __( 'Share your thoughts' ),
-  'title_reply_to'    => __( 'Share your thoughts in %s' ),
-  'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Your thoughts', 'lecteur' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+  'title_reply'       => __( 'Share your thoughts' , 'lecteur'),
+  'title_reply_to'    => __( 'Share your thoughts in %s' , 'lecteur'),
+  'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . __( 'Your thoughts', 'lecteur' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
 );
-
-
 ?>
 
 <div id="comments" class="comments-area">

@@ -22,14 +22,15 @@ function lecteur_paging_nav() {
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'lecteur' ) ); ?></div>
+				<div class="nav-previous"><i class="fa fa-angle-left"></i> <?php next_posts_link( __( 'Older posts', 'lecteur' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'lecteur' ) ); ?></div>
+				<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'lecteur' ) ); ?> <i class="fa fa-angle-right"></i></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
+		<div class="clear-fix"></div>
 	</nav><!-- .navigation -->
 	<?php
 }

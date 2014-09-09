@@ -92,7 +92,7 @@ add_action( 'wp', 'lecteur_setup_author' );
 function lecteur_add_headline_profile( $user ){
 	$headline = get_user_meta( $user->ID,  'lecteur_author_headline', true);
 	?>
-		<h3><?php IS_PROFILE_PAGE ? _e('Your headline') : _e('User headline'); ?></h3>
+		<h3><?php IS_PROFILE_PAGE ? _e('Your headline', 'lecteur') : _e('User headline', 'lecteur'); ?></h3>
 		<table class="form-table">
 			<tr>
 				<th>
@@ -100,7 +100,7 @@ function lecteur_add_headline_profile( $user ){
 				</th>
 				<td>
 					<input type="text" name="lecteur_author_headline" id="lecteur-author-headline" value="<?php echo esc_attr($headline) ?>" class="regular-text" /><br/>
-					<span class="description"><?php _e('This headline will be show below your name in the author box bio. ex. Storyteller') ?></span>
+					<span class="description"><?php _e('This headline will be show below your name in the author box bio. ex. Storyteller', 'lecteur') ?></span>
 				</td>
 			</tr>
 		</table>
@@ -140,9 +140,9 @@ function lecteur_post_class($classes){
 	}
 
 	if( $GLOBALS['lecteur_switch'] ){
-		$classes[] = 'x1';
+		$classes[] = 'single-size';
 	}else{
-		$classes[] = 'x2';
+		$classes[] = 'double-size';
 	}
 
 	return $classes;

@@ -37,6 +37,8 @@ gulp.task('watch', function() {
 
 gulp.task('scripts', function(){
 	gulp.src([
+		'js/src/jquery.mousewheel.min.js',
+		'js/src/jquery.touchSwipe.min.js',
 		'js/src/imagesloaded.js',
 		'js/src/isotope.pkgd.min.js',
 		'js/src/lecteur.js'

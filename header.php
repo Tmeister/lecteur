@@ -15,14 +15,15 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link href='http://fonts.googleapis.com/css?family=Merriweather:300,700|Roboto:900,700,300' rel='stylesheet' type='text/css'>
-
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('menu-visible'); ?>>
+<?php $site_class = ( wp_is_mobile() ) ? '' : 'menu-visible' ?>
+
+<body <?php body_class($site_class); ?>>
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'lecteur' ); ?></a>
-
+	<div class="menu-indicator"></div>
 	<section id="secondary-content">
 		<div id="masthead" class="site-header" role="banner">
 			<div class="site-branding">

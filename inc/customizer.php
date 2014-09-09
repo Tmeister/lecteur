@@ -58,19 +58,19 @@ class Lecteur_Customize {
       ) );
 
 
-	  $wp_customize->add_section( 'lecteur_logos', array(
-			'title'          => __( 'Site Logotype', 'lecteur' ),
-			'priority'       => 35,
-		) );
+	$wp_customize->add_section( 'lecteur_logos', array(
+		'title'          => __( 'Site Logotype', 'lecteur' ),
+		'priority'       => 35,
+	) );
 
-	  $wp_customize->add_setting( 'lecteur_logo', array(
-		    'type'           => 'theme_mod',
-		    'capability'     => 'edit_theme_options',
-		) );
+	$wp_customize->add_setting( 'lecteur_logo', array(
+	    'type'           => 'theme_mod',
+	    'capability'     => 'edit_theme_options',
+	) );
 
-	  $wp_customize->add_control(
-       new WP_Customize_Image_Control(
-           $wp_customize,
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
            'logo',
            array(
                'label'      => __( 'Upload a logo', 'lecteur' ),
@@ -78,7 +78,30 @@ class Lecteur_Customize {
                'settings'   => 'lecteur_logo'
            )
        )
-   );
+	);
+
+	$wp_customize->add_section( 'lecteur_logo_footer', array(
+		'title'          => __( 'Footer Logotype', 'lecteur' ),
+		'priority'       => 35,
+	) );
+
+	$wp_customize->add_setting( 'lecteur_logo_footer', array(
+	    'type'           => 'theme_mod',
+	    'capability'     => 'edit_theme_options',
+	) );
+
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+           'logo_footer',
+           array(
+               'label'      => __( 'Upload a logo', 'lecteur' ),
+               'section'    => 'lecteur_logo_footer',
+               'settings'   => 'lecteur_logo_footer'
+           )
+       )
+	);
+
 
       //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
       $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
