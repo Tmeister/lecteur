@@ -1,8 +1,8 @@
 ( function( $ ) {
 
 	$self = this;
-	$singleHeader = $('.single-post .entry-header');
-	$singleContent = $('.single-post .entry-content-holder');
+	$singleHeader = $('.single .entry-header');
+	$singleContent = $('.single .entry-content-holder');
 	$container = $('.home .entries');
 	$window = $(window);
 	$self.isAnimating = false;
@@ -30,7 +30,7 @@
 	});
 
 	if ($singleHeader.length && !jQuery.browser.mobile ) {
-		$('.single-post').on('mousewheel', function(event, delta) {
+		$('.single').on('mousewheel', function(event, delta) {
 			if( delta < 0 && !$self.isAnimating && $window.scrollTop() > 1  && $window.scrollTop() < $singleHeader.height()){
 				hideHeader();
 			}
@@ -92,6 +92,7 @@
 		$self.isHeaderShowing  = false
 		$singleHeader.addClass('hidden');
 		$singleContent.removeClass('hidden');
+		$('.post-navigation').removeClass('hidden');
 
 		$('html,body').animate({
 				scrollTop: $singleHeader.height()
@@ -106,6 +107,7 @@
 		$self.isHeaderShowing  = true
 		$singleHeader.removeClass('hidden');
 		$singleContent.addClass('hidden');
+		$('.post-navigation').addClass('hidden');
 		$('html,body').animate({
 				scrollTop: 0
 			},
@@ -124,6 +126,7 @@
 		if( $window.scrollTop() >= $singleHeader.height() ){
 			$singleHeader.addClass('hidden');
 			$singleContent.removeClass('hidden');
+			$('.post-navigation').removeClass('hidden');
 			$self.isHeaderShowing  = false
 		}
 		if( $window.scrollTop() < $singleHeader.height() ){

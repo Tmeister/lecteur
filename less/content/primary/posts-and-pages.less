@@ -272,14 +272,14 @@
 
 .single-post,
 .page-template-default,
-.page{
+.page,
+.single{
 	//.mainbar();
 	article{
 		.entry-header{
 			background-position: center center;
 			background-size: cover;
 			color: white;
-			//min-height: 500px;
 			.text-shadow();
 			.holder{
 				.header-width();
@@ -289,7 +289,7 @@
 				width: 100%;
 				.content{
 					display: table-cell;
-					padding: 0px 50px 0px 35%;
+					padding: 0px 50px 20px 35%;
 					vertical-align: bottom;
 					width: 100%;
 					text-align: right;
@@ -475,7 +475,6 @@
 
 .page-template-default,
 .page{
-	//.menu-visible();
 	article{
 		.entry-header{
 			min-height: initial;
@@ -710,5 +709,42 @@
 		background-repeat: no-repeat;
 		background-size: 100px auto;
 		background-position: center center;
+	}
+}
+
+
+.admin-bar{
+	.menu-indicator{
+		top: 40px;
+	}
+	#secondary-content{
+		top:32px !important;
+	}
+
+}
+
+.twitter-tweet{
+	margin: 40px auto !important;
+}
+
+body{
+	&.error404{
+		.content-area{
+			.site-main{
+				min-height: 540px;
+				display: table;
+				width: 100%;
+				.error-404{
+					text-align: center;
+					display: table-cell;
+					vertical-align: middle;
+					.search-submit{
+						padding-top: 17px;
+						padding-bottom: 19px;
+						margin-left: -6px;
+					}
+				}
+			}
+		}
 	}
 }

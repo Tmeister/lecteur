@@ -49,12 +49,12 @@ function lecteur_post_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation post-navigation" role="navigation">
+	<nav class="navigation post-navigation hidden" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'lecteur' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'lecteur' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'lecteur' ) );
+			previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav"><i class="fa fa-angle-left"></i></span><span class="title"><span class="wrap"><span class="headline">Previous post</span>%title</span></span>', 'Previous post link', 'lecteur' ) );
+			next_post_link(     '<div class="nav-next">%link</div>',     _x( '<span class="title"><span class="wrap"><span class="headline">Next post</span>%title</span></span><span class="meta-nav"><i class="fa fa-angle-right"></i></span>', 'Next post link',     'lecteur' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -83,13 +83,6 @@ function lecteur_posted_on() {
 		_x( '%s', 'post date', 'lecteur' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
-
-	/*$byline = sprintf(
-		_x( 'by %s', 'post author', 'lecteur' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);*/
-
-	//echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
 	echo '<span class="posted-on">' . $posted_on . '</span>';
 
 }

@@ -8,7 +8,6 @@
 get_header();
 $entry_class = ( wp_is_mobile() ) ? '' : 'hidden';
 ?>
-
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			<div class="loader">
@@ -18,23 +17,23 @@ $entry_class = ( wp_is_mobile() ) ? '' : 'hidden';
 				</div>
 			</div>
 
-				<div class="entry <?php echo $entry_class; ?>">
+			<div class="entry <?php echo $entry_class; ?>">
+			<?php lecteur_post_nav(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php get_template_part( 'content', 'single' ); ?>
+				<?php get_template_part( 'content', 'single' ); ?>
 
-					<?php
-						// If comments are open or we have at least one comment, load up the comment template
-						if ( comments_open() || '0' != get_comments_number() ) :
-							comments_template();
-						endif;
-					?>
+				<?php
+					// If comments are open or we have at least one comment, load up the comment template
+					if ( comments_open() || '0' != get_comments_number() ) :
+						comments_template();
+					endif;
+				?>
 
-				<?php endwhile; // end of the loop. ?>
-			</div><!-- #entry -->
+			<?php endwhile; // end of the loop. ?>
+		</div><!-- #entry -->
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-	<?php //lecteur_post_nav(); ?>
-<?php get_footer(); ?>
+	<?php get_footer(); ?>

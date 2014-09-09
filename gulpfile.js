@@ -2,6 +2,8 @@
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')({ camelize: true }),
 	lr = require('tiny-lr'),
+	streamqueue = require("streamqueue"),
+	pjson = require("./package.json"),
 	server = lr();
 
 // Styles
@@ -45,6 +47,42 @@ gulp.task('scripts', function(){
 	])
 	.pipe(plugins.concat('lecteur.min.js'))
 	.pipe(gulp.dest('js/'))
+});
+
+gulp.task('zip', function () {
+    var date = new Date().toISOString().replace(/[^0-9]/g, ''),
+        stream = streamqueue({ objectMode: true });
+
+    stream.queue(
+        gulp.src(
+            [
+            	"./*",
+                "fonts/**/*",
+                "images/**/*",
+                "inc/**/*",
+                "js/*",
+                "!js/src/*",
+                "languages/*",
+                "layouts/*",
+                "!less",
+                "!node_modules",
+                "!.git",
+                "!.gitignore",
+                "!git-archive-all",
+                "!gulpfile.js",
+                "!package.json"
+            ],
+            {base: "."})
+    );
+
+    stream.queue(
+        gulp.src("build/**/*", {base: "build/"})
+    );
+
+    // once preprocess ended, concat result into a real file
+    return stream.done()
+        .pipe(plugins.zip("lecteur.zip"))
+        .pipe(gulp.dest("dist/"));
 });
 
 // Default task
