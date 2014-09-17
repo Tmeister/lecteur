@@ -49,15 +49,15 @@ function lecteur_post_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation post-navigation hidden" role="navigation">
+	<div class="navigation post-navigation hidden" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'lecteur' ); ?></h1>
 		<div class="nav-links">
 			<?php
-			previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav"><i class="fa fa-angle-left"></i></span><span class="title"><span class="wrap"><span class="headline">Previous post</span>%title</span></span>', 'Previous post link', 'lecteur' ) );
-			next_post_link(     '<div class="nav-next">%link</div>',     _x( '<span class="title"><span class="wrap"><span class="headline">Next post</span>%title</span></span><span class="meta-nav"><i class="fa fa-angle-right"></i></span>', 'Next post link',     'lecteur' ) );
+			previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav"><i class="fa fa-chevron-left"></i></span><span class="title"><span class="wrap"><span class="headline">Previous post</span>%title</span></span>', 'Previous post link', 'lecteur' ) );
+			next_post_link(     '<div class="nav-next">%link</div>',     _x( '<span class="title"><span class="wrap"><span class="headline">Next post</span>%title</span></span><span class="meta-nav"><i class="fa fa-chevron-right"></i></span>', 'Next post link',     'lecteur' ) );
 			?>
 		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
+	</div><!-- .navigation -->
 	<?php
 }
 endif;

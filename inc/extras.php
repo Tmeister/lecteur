@@ -8,6 +8,12 @@
  */
 
 /**
+ * Adding Image Sizes
+ */
+
+add_image_size( 'grid_thumb', 1200, 700, true );
+
+/**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  *
  * @param array $args Configuration arguments.
@@ -149,3 +155,10 @@ function lecteur_post_class($classes){
 
 }
 add_filter('post_class', 'lecteur_post_class');
+
+
+function lecteur_aesop_timeline_pusher($class){
+	return 'div.post-navigation .nav-links';
+}
+
+add_filter('aesop_timeline_scroll_nav', 'lecteur_aesop_timeline_pusher');
